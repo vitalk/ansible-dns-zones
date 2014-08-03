@@ -1,0 +1,9 @@
+# An optional list of dns zones to generate
+dns_zones: []
+
+# Path to zone files templates.
+dns_zones_input_directory: ./templates
+
+# The destination directory for generated zones. Defaults to files in the role
+# directory.
+dns_zones_output_directory: files

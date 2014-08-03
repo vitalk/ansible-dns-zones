@@ -1,0 +1,33 @@
+{% set domain = item.name %}
+{% block head %}
+$ORIGIN {{ domain }}.
+$TTL    4h
+@           IN  SOA     ns1.{{ domain }}. webmaster.{{ domain }}. (
+        {{ serial }}    ; serial
+        4h              ; slave refresh
+        1h              ; slave retry time in case of a problem
+        2w              ; slave expiriation time
+        4h              ; minimum caching time in case of failed lookups
+        )
+{% endblock %}
+
+{% block ns %}
+            IN  NS      ns1.{{ domain }}.
+{% endblock %}
+
+{% block mx %}
+            IN  MX      mail.{{ domain }}.
+{% endblock %}
+
+{% block spf %}
+            IN  TXT     "v=spf1 a mx -all"
+{% endblock %}
+
+{% block a %}
+            IN  A       1.2.3.4
+mail        IN  A       1.2.3.4
+ns1         IN  A       1.2.3.4
+www         IN  CNAME   @
+{% endblock %}
+
+{% block ptr %}{% endblock %}

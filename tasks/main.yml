@@ -1,0 +1,19 @@
+---
+- name: Ensure the destination directory for zones is exists
+  file:
+    path={{ dns_zones_output_directory }}
+    state=directory
+  delegate_to: localhost
+  tags:
+    - dns
+    - zones
+
+- name: Generate zones from templates
+  template:
+    src={{ dns_zones_input_directory }}/db.{{ item.name }}.j2
+    dest={{ dns_zones_output_directory }}/db.{{ item.name }}
+  with_items: dns_zones
+  delegate_to: localhost
+  tags:
+    - dns
+    - zones

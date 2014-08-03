@@ -1,0 +1,9 @@
+{% extends 'db.zone.j2' %}
+{% set serial = 2014080301 %}
+
+{% block a %}
+            IN  A       1.2.3.4
+ns1         IN  A       1.2.3.4
+mail        IN  A       1.2.3.4
+www         IN  CNAME   @
+{% endblock %}
